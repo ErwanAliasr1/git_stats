@@ -2,8 +2,10 @@
 
 import getopt
 import json
+import pprint
 import urllib
 import sys
+import time
 
 
 def print_help():
@@ -13,6 +15,25 @@ def print_help():
     print '-u <url>  or --url <url>   : Select the git repo to analyze'
     print
 
+
+def extract_commits_from_json(json_data):
+    output = []
+    for commit in json_data:
+        try:
+            str_date = commit['commit']['author']['date']
+            # '2016-02-16T14:04:24Z
+            pattern = '%Y-%m-%dT%H:%M:%SZ'
+            epoch = int(time.mktime(time.strptime(str_date, pattern)))
+            output.append({epoch: commit['commit']['author']['name']})
+        except KeyError as e:
+            print "Unexcepted input format :" . e.strerror()
+            print "The input format may have change, Exiting"
+            sys.exit(1)
+        except:
+            print "Unexpected error :"
+            raise
+
+    return sorted(output)
 
 if __name__ == '__main__':
     url = None
@@ -52,3 +73,7 @@ if __name__ == '__main__':
     if json_data is None:
         print "Error: no data can be read from the pointed URL, Exiting"
         sys.exit(1)
+
+    commits = extract_commits_from_json(json_data)
+
+    pprint.pprint(commits)
