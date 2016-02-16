@@ -44,4 +44,11 @@ if __name__ == '__main__':
         print "Error: Unexpected error on %s with %s" % (url, sys.exc_info()[0])
         raise
 
-    json_data = json.load(raw_data)
+    try:
+        json_data = json.load(raw_data)
+    except ValueError as e:
+        print "Error: The pointed URL is not a valid JSON format"
+
+    if json_data is None:
+        print "Error: no data can be read from the pointed URL, Exiting"
+        sys.exit(1)
