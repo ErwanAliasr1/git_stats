@@ -16,6 +16,28 @@ def print_help():
     print
 
 
+def to_json(json_stream):
+    json_data = None
+    try:
+        json_data = json.load(json_stream)
+    except ValueError as e:
+        print "Error: The pointed URL is not a valid JSON format"
+
+    return json_data
+
+
+def get_raw_file(url):
+    raw_data = None
+    try:
+        raw_data = urllib.urlopen(url)
+    except IOError as e:
+        print "Error: Cannot open %s with error %s " % (url, e.strerror)
+    except:
+        print "Error: Unexpected error on %s with %s" % (url, sys.exc_info()[0])
+        raise
+    return raw_data
+
+
 def extract_commits_from_json(json_data):
     output = []
     for commit in json_data:
@@ -57,19 +79,11 @@ if __name__ == '__main__':
         print_help()
         sys.exit(1)
 
-    try:
-        raw_data = urllib.urlopen(url)
-    except IOError as e:
-        print "Error: Cannot open %s with error %s " % (url, e.strerror)
-    except:
-        print "Error: Unexpected error on %s with %s" % (url, sys.exc_info()[0])
-        raise
+    raw_data = get_raw_file(url)
 
-    try:
-        json_data = json.load(raw_data)
-    except ValueError as e:
-        print "Error: The pointed URL is not a valid JSON format"
+    json_data = to_json(raw_data)
 
+    pprint.pprint(json_data)
     if json_data is None:
         print "Error: no data can be read from the pointed URL, Exiting"
         sys.exit(1)
