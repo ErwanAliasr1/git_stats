@@ -3,9 +3,9 @@
 import getopt
 import json
 import pprint
-import urllib
 import sys
 import time
+import urllib
 
 
 def print_help():
