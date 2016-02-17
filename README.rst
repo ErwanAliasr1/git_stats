@@ -11,6 +11,7 @@ git_stats is a sample tool to compute some stats of a github repository.
 
 Usage
 -----
+
 git_stats connect to a github repository to report the following items :
     - mean time between commits
     - top <n> contributors (5 is the default)
@@ -41,7 +42,8 @@ Options:
         Print the help message
 
 -    -u <url> or --url <url>
-        Select the git repo to analyze
+        Select the github repository to analyze
+        Could be any http/https/ftp url style.
 
 -    -c <count> or --count <count>
         Top <count> contributors (Default: 5)
