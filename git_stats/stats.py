@@ -7,13 +7,16 @@ import numpy
 import sys
 import time
 import urllib
+from collections import Counter
 
+DEFAULT_CONTRIBUTOR_COUNT = 5
 
 def print_help():
     print 'git_stats help '
     print
-    print '-h --help                  : Print this help'
-    print '-u <url>  or --url <url>   : Select the git repo to analyze'
+    print '-h --help                     : Print this help'
+    print '-u <url>  or --url <url>      : Select the git repo to analyze'
+    print '-c <count> or --count <count> : Top <count> contributors (Default: %s)' % DEFAULT_CONTRIBUTOR_COUNT
     print
 
 
@@ -68,10 +71,18 @@ def extract_commits_from_json(json_data):
 
     return sorted(output)
 
+
+def compute_authors_stats(commits):
+    authors = []
+    for i, commit in enumerate(commits):
+        authors.append(commit[commit.keys()[0]])
+    return Counter(authors)
+
 if __name__ == '__main__':
     url = None
+    contributors_count = DEFAULT_CONTRIBUTOR_COUNT
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "hu:", ['help', 'url'])
+        opts, args = getopt.getopt(sys.argv[1:], "hu:c:", ['help', 'url', 'count'])
     except getopt.GetoptError:
         print "Error: One option passed to the cmdline was not supported"
         print "Please fix your command line or read the help (-h option)"
@@ -84,6 +95,8 @@ if __name__ == '__main__':
             sys.exit(0)
         elif opt in ("-u", "--url"):
             url = arg
+        elif opt in ("-c", "--count"):
+            contributors_count = int(arg)
 
     if url is None:
         print "Error: Url option is mandatory"
@@ -99,3 +112,16 @@ if __name__ == '__main__':
     commits = extract_commits_from_json(json_data)
     mean = compute_mean(commits)
     print "The Average time between two commits is : %.2f minutes" % (mean / 60)
+
+    stats = compute_authors_stats(commits)
+    print
+    print "The top %d contributors are :" % contributors_count
+    print " %-32s : %5s" % ("Author", "Commits")
+    print " %-32s : %5s" % ("--------------------------------", "-------")
+    for index in range(contributors_count):
+        if index < len(stats.keys()):
+            if (stats.keys()[index]):
+                print " %-32s : %7d" %(stats.keys()[index], stats[stats.keys()[index]])
+        else:
+            print " Only %d contributors. Unable to reach %d " % (index, contributors_count)
+            break

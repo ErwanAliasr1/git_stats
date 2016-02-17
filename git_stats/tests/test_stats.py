@@ -18,6 +18,7 @@
 import os
 import pprint
 import unittest
+from collections import Counter
 from git_stats import stats
 
 
@@ -28,6 +29,15 @@ class TestStats(unittest.TestCase):
             os.getcwd()))
         commits = stats.extract_commits_from_json(json)
         self.assertEqual(stats.compute_mean(commits), 90593.777777777781)
+
+    def test_ranking(self):
+        result = Counter({u'Matt Benjamin': 64, u'Sage Weil': 7, u'Jason Dillaman': 7, u'Yehuda Sadeh': 5, u'Kefu Chai': 4, u'Gregory Farnum': 4, u'Orit Wasserman': 2, u'Greg Farnum': 2, u'Josh Durgin': 1, u'Mykola Golub': 1, u'Pete Zaitcev': 1, u'Dan Mick': 1, u'Loic Dachary': 1})
+        json = stats.to_json(stats.get_raw_file("file://%s/git_stats/tests/sample_1000_commits" %
+            os.getcwd()))
+        commits = stats.extract_commits_from_json(json)
+        stat = stats.compute_authors_stats(commits)
+        self.assertEqual(stat, result)
+
 
     def test_get_json(self):
         json_struct = [{u'author': {u'avatar_url': u'https://avatars.githubusercontent.com/u/59071?v=3',
