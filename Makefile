@@ -10,3 +10,6 @@ flake8:
 
 pylint:
 	-pylint -f parseable $(PYSRC)
+
+dist:
+	python setup.py sdist
