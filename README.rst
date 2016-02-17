@@ -42,7 +42,8 @@ Options:
         Print the help message
 
 -    -u <url> or --url <url>
-        Select the github repository to analyze
+        Select the github repository to analyze.
+
         Could be any http/https/ftp url style.
 
 -    -c <count> or --count <count>

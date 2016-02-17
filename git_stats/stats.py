@@ -11,6 +11,7 @@ from collections import Counter
 
 DEFAULT_CONTRIBUTOR_COUNT = 5
 
+
 def print_help():
     print 'git_stats help '
     print
