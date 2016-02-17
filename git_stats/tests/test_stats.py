@@ -23,6 +23,12 @@ from git_stats import stats
 
 class TestStats(unittest.TestCase):
 
+    def test_mean(self):
+        json = stats.to_json(stats.get_raw_file("file://%s/git_stats/tests/sample_1000_commits" %
+            os.getcwd()))
+        commits = stats.extract_commits_from_json(json)
+        self.assertEqual(stats.compute_mean(commits), 90593.777777777781)
+
     def test_get_json(self):
         json_struct = [{u'author': {u'avatar_url': u'https://avatars.githubusercontent.com/u/59071?v=3',
               u'events_url': u'https://api.github.com/users/tchaikov/events{/privacy}',

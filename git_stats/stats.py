@@ -3,6 +3,7 @@
 import getopt
 import json
 import pprint
+import numpy
 import sys
 import time
 import urllib
@@ -36,6 +37,16 @@ def get_raw_file(url):
         print "Error: Unexpected error on %s with %s" % (url, sys.exc_info()[0])
         raise
     return raw_data
+
+
+def compute_mean(commits):
+    last = 0
+    delta = []
+    for i, commit in enumerate(commits):
+        if last:
+            delta.append(commit.keys()[0] - last)
+        last = commit.keys()[0]
+    return numpy.mean(delta)
 
 
 def extract_commits_from_json(json_data):
@@ -81,11 +92,10 @@ if __name__ == '__main__':
 
     json_data = to_json(get_raw_file(url))
 
-    pprint.pprint(json_data)
     if json_data is None:
         print "Error: no data can be read from the pointed URL, Exiting"
         sys.exit(1)
 
     commits = extract_commits_from_json(json_data)
-
-    #pprint.pprint(commits)
+    mean = compute_mean(commits)
+    print "The Average time between two commits is : %.2f minutes" % (mean / 60)

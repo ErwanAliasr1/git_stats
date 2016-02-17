@@ -1,3 +1,4 @@
 mock
 bash8
 nose
+numpy
