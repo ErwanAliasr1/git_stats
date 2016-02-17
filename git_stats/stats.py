@@ -79,9 +79,7 @@ if __name__ == '__main__':
         print_help()
         sys.exit(1)
 
-    raw_data = get_raw_file(url)
-
-    json_data = to_json(raw_data)
+    json_data = to_json(get_raw_file(url))
 
     pprint.pprint(json_data)
     if json_data is None:
@@ -90,4 +88,4 @@ if __name__ == '__main__':
 
     commits = extract_commits_from_json(json_data)
 
-    pprint.pprint(commits)
+    #pprint.pprint(commits)

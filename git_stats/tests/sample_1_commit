@@ -1,0 +1,77 @@
+[
+  {
+    "sha": "22c6d3549e1eb27145686e5b3daaf412765e00c7",
+    "commit": {
+      "author": {
+        "name": "Kefu Chai",
+        "email": "tchaikov@gmail.com",
+        "date": "2016-02-17T09:21:29Z"
+      },
+      "committer": {
+        "name": "Kefu Chai",
+        "email": "tchaikov@gmail.com",
+        "date": "2016-02-17T09:21:29Z"
+      },
+      "message": "Merge pull request #7603 from roidayan/xio_fixes\n\nXio fixes\r\n\r\nReviewed-by: Matt Benjamin <mbenjamin@redhat.com>\r\nReviewed-by: Casey Bodley <cbodley@redhat.com>",
+      "tree": {
+        "sha": "50a939b87fd9dd96a5757d1f44c51653cde39449",
+        "url": "https://api.github.com/repos/ceph/ceph/git/trees/50a939b87fd9dd96a5757d1f44c51653cde39449"
+      },
+      "url": "https://api.github.com/repos/ceph/ceph/git/commits/22c6d3549e1eb27145686e5b3daaf412765e00c7",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/ceph/ceph/commits/22c6d3549e1eb27145686e5b3daaf412765e00c7",
+    "html_url": "https://github.com/ceph/ceph/commit/22c6d3549e1eb27145686e5b3daaf412765e00c7",
+    "comments_url": "https://api.github.com/repos/ceph/ceph/commits/22c6d3549e1eb27145686e5b3daaf412765e00c7/comments",
+    "author": {
+      "login": "tchaikov",
+      "id": 59071,
+      "avatar_url": "https://avatars.githubusercontent.com/u/59071?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/tchaikov",
+      "html_url": "https://github.com/tchaikov",
+      "followers_url": "https://api.github.com/users/tchaikov/followers",
+      "following_url": "https://api.github.com/users/tchaikov/following{/other_user}",
+      "gists_url": "https://api.github.com/users/tchaikov/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/tchaikov/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/tchaikov/subscriptions",
+      "organizations_url": "https://api.github.com/users/tchaikov/orgs",
+      "repos_url": "https://api.github.com/users/tchaikov/repos",
+      "events_url": "https://api.github.com/users/tchaikov/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/tchaikov/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "tchaikov",
+      "id": 59071,
+      "avatar_url": "https://avatars.githubusercontent.com/u/59071?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/tchaikov",
+      "html_url": "https://github.com/tchaikov",
+      "followers_url": "https://api.github.com/users/tchaikov/followers",
+      "following_url": "https://api.github.com/users/tchaikov/following{/other_user}",
+      "gists_url": "https://api.github.com/users/tchaikov/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/tchaikov/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/tchaikov/subscriptions",
+      "organizations_url": "https://api.github.com/users/tchaikov/orgs",
+      "repos_url": "https://api.github.com/users/tchaikov/repos",
+      "events_url": "https://api.github.com/users/tchaikov/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/tchaikov/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "64c1d54354a09a8485193dce9d5da1c526d1aadd",
+        "url": "https://api.github.com/repos/ceph/ceph/commits/64c1d54354a09a8485193dce9d5da1c526d1aadd",
+        "html_url": "https://github.com/ceph/ceph/commit/64c1d54354a09a8485193dce9d5da1c526d1aadd"
+      },
+      {
+        "sha": "bfafc3b3fd7305a39a507d11e443f93a2ae22f31",
+        "url": "https://api.github.com/repos/ceph/ceph/commits/bfafc3b3fd7305a39a507d11e443f93a2ae22f31",
+        "html_url": "https://github.com/ceph/ceph/commit/bfafc3b3fd7305a39a507d11e443f93a2ae22f31"
+      }
+    ]
+  }
+]
