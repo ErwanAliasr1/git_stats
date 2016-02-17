@@ -78,7 +78,8 @@ def compute_authors_stats(commits):
         authors.append(commit[commit.keys()[0]])
     return Counter(authors)
 
-def main():
+
+if __name__ == '__main__':
     url = None
     contributors_count = DEFAULT_CONTRIBUTOR_COUNT
     try:
