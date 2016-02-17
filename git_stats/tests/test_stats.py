@@ -31,8 +31,18 @@ class TestStats(unittest.TestCase):
         self.assertEqual(stats.compute_mean(commits), 90593.777777777781)
 
     def test_ranking(self):
-        result = Counter({u'Matt Benjamin': 64, u'Sage Weil': 7, u'Jason Dillaman': 7, u'Yehuda Sadeh': 5, u'Kefu Chai': 4, u'Gregory Farnum': 4, u'Orit Wasserman': 2, u'Greg Farnum': 2, u'Josh Durgin': 1, u'Mykola Golub': 1, u'Pete Zaitcev': 1, u'Dan Mick': 1, u'Loic Dachary': 1})
+        result = [(u'Matt Benjamin', 64), (u'Sage Weil', 7), (u'Jason Dillaman', 7), (u'Yehuda Sadeh', 5), (u'Kefu Chai', 4), (u'Gregory Farnum', 4), (u'Orit Wasserman', 2), (u'Greg Farnum', 2), (u'Josh Durgin', 1), (u'Mykola Golub', 1), (u'Pete Zaitcev', 1), (u'Dan Mick', 1), (u'Loic Dachary', 1)]
         json = stats.to_json(stats.get_raw_file("file://%s/git_stats/tests/sample_1000_commits" %
+            os.getcwd()))
+        commits = stats.extract_commits_from_json(json)
+        stat = stats.compute_authors_stats(commits)
+        self.assertEqual(stat, result)
+
+
+    def test_unsorted_ranking(self):
+        result = [(u'Leseb', 37), (u'S\xe9bastien Han', 25), (u'Alfredo Deza', 15),  (u'Andrew Schoen', 8), (u'KGoreczny', 3), (u'Matt Thompson', 2), (u'pprokop', 2), (u'Niklas Haas', 1), (u'Byron McCollum', 1), (u'Huamin Chen', 1), (u'Daniel Gryniewicz', 1),
+(u'Krzysztof Goreczny', 1), (u'Guillaume Abrioux', 1), (u'mcsage', 1), (u'Ben England', 1)]
+        json = stats.to_json(stats.get_raw_file("file://%s/git_stats/tests/sample_unsorted_commits" %
             os.getcwd()))
         commits = stats.extract_commits_from_json(json)
         stat = stats.compute_authors_stats(commits)

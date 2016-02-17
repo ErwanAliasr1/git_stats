@@ -76,7 +76,7 @@ def compute_authors_stats(commits):
     authors = []
     for i, commit in enumerate(commits):
         authors.append(commit[commit.keys()[0]])
-    return Counter(authors)
+    return Counter(authors).most_common()
 
 
 if __name__ == '__main__':
@@ -119,10 +119,11 @@ if __name__ == '__main__':
     print "The top %d contributors are :" % contributors_count
     print " %-32s : %5s" % ("Author", "Commits")
     print " %-32s : %5s" % ("--------------------------------", "-------")
-    for index in range(contributors_count):
-        if index < len(stats.keys()):
-            if (stats.keys()[index]):
-                print " %-32s : %7d" %(stats.keys()[index], stats[stats.keys()[index]])
-        else:
-            print " Only %d contributors. Unable to reach %d " % (index, contributors_count)
+    author_count = 0
+    for author in stats:
+        print " %-32s : %7d" %(author[0], author[1])
+        author_count += 1
+        if (author_count >= contributors_count):
             break
+    if author_count < contributors_count:
+            print " Only %d contributors. Unable to reach %d " % (author_count, contributors_count)
