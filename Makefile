@@ -11,5 +11,8 @@ flake8:
 pylint:
 	-pylint -f parseable $(PYSRC)
 
-dist:
+clean:
+	rm -rf dist
+
+dist: clean
 	python setup.py sdist
